@@ -13,9 +13,7 @@
 
     var ColorScale =  d3.scaleQuantize().domain([1,50]) //color 범위 지정함
       .range(["orange","blue","red","black","green"]);
-
-    var data= [${lotto[0]},${lotto[1]},${lotto[2]},${lotto[3]},${lotto[4]},${lotto[5]}];
-
+          var data = [{{lotto.0}},{{lotto.1}},{{lotto.2}},{{lotto.3}},{{lotto.4}},{{lotto.5}}];
     var svg = d3.select("h2").append("svg")
       //.style("background-color","yellow")
       .append("g")
@@ -40,7 +38,7 @@
 
   </script>
 	<br>
-	<button style="" class="btn btn-secondary" onclick="location.href = 'main'" >메인으로</button>
+	<button style="" class="btn btn-secondary" onclick="location.href = '/'" >메인으로</button>
 	 </div>
             </div>
           </div>

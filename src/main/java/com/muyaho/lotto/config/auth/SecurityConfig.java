@@ -14,14 +14,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final CustomOAuth2UserService customOAuth2UserService;
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception{
-        http.authorizeRequests().antMatchers("/lotto").authenticated()
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable().headers().frameOptions().disable()
+                .and()
+                .authorizeRequests().antMatchers("/lotto").authenticated()
                 .anyRequest().permitAll()
-        .and()
+                .and()
                 .oauth2Login().loginPage("/login")
-        .and()
+                .and()
                 .logout().logoutSuccessUrl("/")
-        .and()
-            .oauth2Login().userInfoEndpoint().userService(customOAuth2UserService);
+                .and()
+                .oauth2Login().userInfoEndpoint().userService(customOAuth2UserService);
     }
 }
