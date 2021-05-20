@@ -4,24 +4,31 @@ import java.time.LocalDate;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
+import com.muyaho.lotto.config.auth.dto.SessionUser;
 import com.muyaho.lotto.domain.LottoInfo.LottoInfo;
 import com.muyaho.lotto.domain.LottoInfo.LottoInfoRepository;
 import com.muyaho.lotto.domain.LottoInfo.dto.LottoDTO;
 import com.muyaho.lotto.domain.LottoInfo.dto.LottoUserDTO;
 import com.muyaho.lotto.domain.LottoInfo.dto.ManualDTO;
 import com.muyaho.lotto.domain.UserInfo.UserInfo;
+import com.muyaho.lotto.domain.UserInfo.UserInfoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Service
 @RequiredArgsConstructor
 public class LottoService {
 	
 	private final LottoInfoRepository lottoInfoRepository;
+	private final HttpService httpService;
+	private final UserInfoRepository userInfoRepository;
 
-	public int[] cal(LottoDTO lottoDTO, ManualDTO manualDTO) {
+	public int[] cal(LottoDTO lottoDTO, ManualDTO manualDTO, HttpServletRequest request, SessionUser user) {
 		LocalDate dayday = LocalDate.now();
 		long num = Math.round(dayday.getYear() * dayday.lengthOfMonth() * dayday.getDayOfYear() + lottoDTO.getLuckyNum() * lottoDTO.getDay() * lottoDTO.getMonth() * Math.pow(lottoDTO.getYear(),2) * 1.618);
 		int[] auto = getLotto(num);
@@ -31,7 +38,26 @@ public class LottoService {
 				lotto[i] = check(auto[i], lotto);
 			}
 		}
+		lotto = sort(lotto);
+		lottoInfoRepository.save(getLottoUserInfo(lotto,request,user));
 		return sort(lotto);
+	}
+
+	public LottoInfo getLottoUserInfo(int[] lotto, HttpServletRequest request, SessionUser user) {
+		LottoInfo lottoInfo = LottoInfo.builder()
+				.ip(httpService.getIp(request))
+				.browser(httpService.getBrowser(request))
+				.device(httpService.getDevice(request))
+				.useragent(request.getHeader("user-agent"))
+				.num1(lotto[0])
+				.num2(lotto[1])
+				.num3(lotto[2])
+				.num4(lotto[3])
+				.num5(lotto[4])
+				.num6(lotto[5])
+				.userInfo(userInfoRepository.findByEmailAndPlatform(user.getEmail(), user.getPlatform()).get())
+				.build();
+		return  lottoInfo;
 	}
 
 	public int[] getLotto(long num) {
