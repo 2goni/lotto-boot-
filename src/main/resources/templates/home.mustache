@@ -1,4 +1,36 @@
 {{>includes/header}}
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script>
+    function shareTwitter() {
+        var sendText = "황금비 로또추천 사이트"; // 전달할 텍스트
+        var sendUrl = "randomluckygames.site/"; // 전달할 URL
+        window.open("https://twitter.com/intent/tweet?text=" + sendText + "&url=" + sendUrl);
+    }
+
+    function shareFacebook() {
+        var sendUrl = "randomluckygames.site/"; // 전달할 URL
+        window.open("http://www.facebook.com/sharer/sharer.php?u=" + sendUrl);
+    }
+    function shareKakao() {
+        // 사용할 앱의 JavaScript 키 설정
+        Kakao.init('a806aca4d566e824b55bc50988a6df01');
+
+        // 카카오링크 버튼 생성
+        Kakao.Link.createDefaultButton({
+            container: '#btnKakao', // 카카오공유버튼ID
+            objectType: 'feed',
+            content: {
+                title: "황금비 로또추천 사이트", // 보여질 제목
+                description: "황금비 로또추천 사이트 입니다", // 보여질 설명
+                imageUrl: "randomluckygames.site/", // 콘텐츠 URL
+                link: {
+                    mobileWebUrl: "randomluckygames.site/",
+                    webUrl: "randomluckygames.site/"
+                }
+            }
+        });
+    }
+</script>
   <div class="masthead">
     <div class="masthead-bg"></div>
     <div class="container h-100">
@@ -19,19 +51,13 @@
   <div class="social-icons">
     <ul class="list-unstyled text-center mb-0">
       <li class="list-unstyled-item">
-        <a href="#">
-          <i class="fab fa-twitter"></i>
-        </a>
+          <a id="btnTwitter" class="link-icon twitter" href="javascript:shareTwitter();"></a>
       </li>
       <li class="list-unstyled-item">
-        <a href="#">
-          <i class="fab fa-facebook-f"></i>
-        </a>
+          <a id="btnFacebook" class="link-icon facebook" href="javascript:shareFacebook();"></a>
       </li>
       <li class="list-unstyled-item">
-        <a href="#">
-          <i class="fab fa-instagram"></i>
-        </a>
+            <a id="btnKakao" class="link-icon kakao" href="javascript:shareKakao();"></a>
       </li>
     </ul>
   </div>
