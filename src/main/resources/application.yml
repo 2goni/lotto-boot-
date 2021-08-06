@@ -1,6 +1,3 @@
 spring:
   profiles:
-    include: oauth, db
-
-
-
+    include: oauth,db
