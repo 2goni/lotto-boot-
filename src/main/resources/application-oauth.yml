@@ -7,15 +7,15 @@ spring:
         registration:
           #구글
           google:
-            client-id: 1050608260638-e1sef209ces8vc423onmtcc2u4gf993c.apps.googleusercontent.com
-            client-secret: jKeiqfuXxXBfJXDwZnxrizmo
+            client-id: 250940130904-2m46pg67t4scd4560jqibvi68i074105.apps.googleusercontent.com
+            client-secret: etIdgXd2s2y8y88OxbMxZIZa
             scope:
               - profile
               - email
           #네이버
           naver:
-            client-id: DgKEnDrOPQvnn5Mmed4l
-            client-secret: RpQCee2z3B
+            client-id: D22Z3nvZT5kwK0jTedni
+            client-secret: oS9kkWDPm5
             redirect-uri: "{baseUrl}/{action}/oauth2/code/{registrationId}"
             authorization_grant_type: authorization_code
             scope:
