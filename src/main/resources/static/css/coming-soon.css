@@ -81,7 +81,11 @@ video {
 }
 
 .masthead .masthead-content h1 {
-  font-size: 3rem;
+  font-size: 2.5rem;
+}
+
+.masthead .masthead-content h2 {
+  font-size: 2rem;
 }
 
 .masthead .masthead-content p {
@@ -123,7 +127,10 @@ video {
     padding-right: 10rem;
   }
   .masthead .masthead-content h1 {
-    font-size: 3.5rem;
+    font-size: 3rem;
+  }
+  .masthead .masthead-content h2 {
+    font-size: 3rem;
   }
   .masthead .masthead-content p {
     font-size: 1.3rem;
@@ -200,6 +207,10 @@ video {
 .btn-secondary:active, .btn-secondary:focus, .btn-secondary:hover {
   background-color: #ba7c37 !important;
   border-color: #ba7c37 !important;
+}
+.btn:active, .btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .input {

@@ -4,6 +4,7 @@ import com.muyaho.lotto.config.auth.LoginUser;
 import com.muyaho.lotto.config.auth.dto.SessionUser;
 import com.muyaho.lotto.domain.LottoInfo.dto.LottoDTO;
 import com.muyaho.lotto.domain.LottoInfo.dto.ManualDTO;
+import com.muyaho.lotto.domain.UserInfo.UserInfo;
 import com.muyaho.lotto.service.LottoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
-@RequestMapping("/lotto")
 @RequiredArgsConstructor
 @Controller
 public class LottoController {
@@ -21,12 +21,21 @@ public class LottoController {
     private final LottoService service;
 
 
-    @PostMapping("/cal")
-    public String cal(@LoginUser SessionUser user, Model model, LottoDTO lottoDTO, ManualDTO manualDTO, HttpServletRequest request) {
+    @PostMapping("/lotto")
+    public String lotto(@LoginUser SessionUser user, Model model, LottoDTO lottoDTO, ManualDTO manualDTO, HttpServletRequest request) {
         model.addAttribute("lotto", service.cal(lottoDTO, manualDTO, request, user));
-        return "cal";
+        return "lotto";
+
     }
 
+    @RequestMapping("/lottoList")
+    public String lottoList(@LoginUser SessionUser user, Model model){
+        if(service.getList(user) == null){
+            return "error";
+        }
+        model.addAttribute("lottoList", service.getList(user));
+        return "lottoList";
+    }
 }
 
 

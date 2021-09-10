@@ -1,3 +1,36 @@
-.link-icon.twitter { background-image: url(../img/icon-twitter.png); background-repeat: no-repeat; background-position: center; background-color: rgb(29 161 242); }
-.link-icon.facebook { background-image: url(../img/icon-facebook.png); background-repeat: no-repeat; background-position: center; background-color: rgb(68 93 153);}
-.link-icon.kakao { background-image: url(../img/icon-kakao.png); background-repeat: no-repeat; background-position: center; background-color: rgb(255 213 56);}
+.link-icon.twitter {
+    background-image: url(../img/icon-twitter.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgb(29 161 242);
+}
+
+.link-icon.facebook {
+    background-image: url(../img/icon-facebook.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgb(68 93 153);
+}
+
+.link-icon.kakao {
+    background-image: url(../img/icon-kakao.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgb(255 213 56);
+}
+
+@media (max-width: 768px) {
+    svg {
+        transform: scale(0.7);
+        max-width: 210px;
+    }
+    th {
+        max-width: 220px;
+    }
+    td{
+        max-width: 220px;
+    }
+    list{
+        max-width: 220px;
+    }
+}

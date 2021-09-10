@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface LottoInfoRepository extends JpaRepository<LottoInfo, Long> {
-    List<LottoInfo> findByUserInfo(UserInfo userInfo);
+    List<LottoInfo> findTop10ByUserInfoOrderByCreatedDateAsc(UserInfo userInfo);
 }
