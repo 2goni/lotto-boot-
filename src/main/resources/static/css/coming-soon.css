@@ -127,13 +127,13 @@ video {
     padding-right: 10rem;
   }
   .masthead .masthead-content h1 {
-    font-size: 3rem;
+    font-size: 3rem !important;
   }
   .masthead .masthead-content h2 {
-    font-size: 3rem;
+    font-size: 3rem !important;
   }
   .masthead .masthead-content p {
-    font-size: 1.3rem;
+    font-size: 1.3rem !important;
   }
 }
 
