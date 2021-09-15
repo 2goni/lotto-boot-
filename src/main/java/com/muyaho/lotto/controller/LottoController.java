@@ -4,7 +4,7 @@ import com.muyaho.lotto.config.auth.LoginUser;
 import com.muyaho.lotto.config.auth.dto.SessionUser;
 import com.muyaho.lotto.domain.LottoInfo.dto.LottoDTO;
 import com.muyaho.lotto.domain.LottoInfo.dto.ManualDTO;
-import com.muyaho.lotto.domain.UserInfo.UserInfo;
+
 import com.muyaho.lotto.service.LottoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -30,7 +30,7 @@ public class LottoController {
 
     @RequestMapping("/lottoList")
     public String lottoList(@LoginUser SessionUser user, Model model){
-        if(service.getList(user) == null){
+        if(service.getList(user).isEmpty()){
             return "error";
         }
         model.addAttribute("lottoList", service.getList(user));

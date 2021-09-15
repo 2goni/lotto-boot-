@@ -6,7 +6,7 @@
             <div class="col-12 my-auto">
                 <div class="masthead-content text-white py-5 py-md-0" style="text-align: center">
                     <h2 class="mb-3" style="text-align: center">:: 행운의 번호 리스트 ::</h2>
-                    최근 10개만 조회 됩니다
+                    <p style="margin-bottom: 15px">최근 10개만 조회 됩니다</p>
                     <table id="list" style="margin: auto">
                         <th style="color: skyblue; font-family: 'Merriweather'; min-width: 50px">생성날짜</th>
                         <th style="color: skyblue; font-family: 'Merriweather'; min-width: 50px">행운의 숫자</th>
@@ -14,31 +14,34 @@
                     </table>
                     <script src="https://d3js.org/d3.v5.min.js"></script>
                     <script>
+                            var num = 1;
+
                         {{#lottoList}}
+
                             var ColorScale = d3.scaleQuantize().domain([1, 50]) //color 범위 지정함
                                     .range(["orange", "blue", "red", "black", "green"]);
                             var data = [{{num1}},{{num2}},{{num3}},{{num4}},{{num5}},{{num6}}];
 
                             // table element 찾기
-                            const table = document.getElementById('list');
+                            var table = document.getElementById('list');
 
                             // 새 행(Row) 추가
-                            const newRow = table.insertRow();
+                            var newRow = table.insertRow();
 
                             // 새 행(Row)에 Cell 추가
-                            const newCell1 = newRow.insertCell(0);
-                            const newCell2 = newRow.insertCell(1);
-                            const newCell3 = newRow.insertCell(2);
+                            var newCell1 = newRow.insertCell(0);
+                            var newCell2 = newRow.insertCell(1);
+                            var newCell3 = newRow.insertCell(2);
 
                             // div생성
-                            const newDiv = document.createElement('list');
+                            var newDiv = document.createElement('list'+num);
                             newDiv.style.display="block";
                             // Cell에 텍스트 및 div추가
                             newCell1.innerText = "{{createdDate}}";
                             newCell2.innerText = "{{luckyNum}}";
                             newCell3.append(newDiv);
 
-                            var svg = d3.select("list").append("svg")
+                            var svg = d3.select("list"+num).append("svg")
                                     .attr("height", "50px")
                                     .attr("display", "block")
                                     //.style("background-color","yellow")
@@ -69,6 +72,8 @@
                                         return d;
                                     })
                             text.exit().remove();
+
+                        num++;
 
                         {{/lottoList}}
                     </script>

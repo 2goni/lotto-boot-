@@ -36,8 +36,13 @@ public class LottoService {
             }
         }
         lotto = sort(lotto);
+        String code = String.valueOf(lotto[0]) + "&" + String.valueOf(lotto[1]) + "&" + String.valueOf(lotto[2]) + "&" + String.valueOf(lotto[3]) + "&" + String.valueOf(lotto[4]) + "&" + String.valueOf(lotto[5]);
+        LottoInfo checkCode = lottoInfoRepository.findByCode(code);
+        if(checkCode != null){
+            lottoInfoRepository.delete(checkCode);
+        }
         lottoInfoRepository.save(getLottoUserInfo(lotto, request, user, lottoDTO.getLuckyNum()));
-        return sort(lotto);
+        return lotto;
     }
 
     public LottoInfo getLottoUserInfo(int[] lotto, HttpServletRequest request, SessionUser user, int luckyNum) {
@@ -102,7 +107,7 @@ public class LottoService {
         UserInfo userInfo = new UserInfo();
         if (userInfoRepository.findByEmailAndPlatform(user.getEmail(), user.getPlatform()).isPresent()) {
             userInfo = userInfoRepository.findByEmailAndPlatform(user.getEmail(), user.getPlatform()).get();
-            List<LottoInfo> lottoInfoList = lottoInfoRepository.findTop10ByUserInfoOrderByCreatedDateAsc(userInfo);
+            List<LottoInfo> lottoInfoList = lottoInfoRepository.findTop10ByUserInfoOrderByCreatedDateDesc(userInfo);
             for (LottoInfo lottoInfo : lottoInfoList) {
                 lottoUserDTOList.add(LottoUserDTO.builder()
                         .createdDate(lottoInfo.getCreatedDate())

@@ -21,8 +21,14 @@
 
 @media (max-width: 768px) {
     svg {
+        max-width: 220px;
+
+    }
+    circle {
         transform: scale(0.7);
-        max-width: 210px;
+    }
+    text {
+        transform: scale(0.7);
     }
     th {
         max-width: 220px;

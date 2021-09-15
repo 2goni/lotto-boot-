@@ -4,9 +4,6 @@ import com.muyaho.lotto.domain.UserInfo.UserInfo;
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
-
 @Data
 public class LottoUserDTO {
     private String userName;

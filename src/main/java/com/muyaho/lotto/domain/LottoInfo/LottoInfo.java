@@ -37,6 +37,9 @@ public class LottoInfo extends BaseTimeEntity {
     @Column(nullable = false)
     private int num6;
 
+    @Column(nullable = false, unique = true)
+    private String code;
+
     @Column(nullable = false)
     private int luckyNum;
 
@@ -61,6 +64,7 @@ public class LottoInfo extends BaseTimeEntity {
         this.num4 = num4;
         this.num5 = num5;
         this.num6 = num6;
+        this.code = String.valueOf(num1) + "&" + String.valueOf(num2) + "&" + String.valueOf(num3) + "&" + String.valueOf(num4) + "&" + String.valueOf(num5) + "&" + String.valueOf(num6);
         this.luckyNum = luckyNum;
         this.ip = ip;
         this.browser = browser;
