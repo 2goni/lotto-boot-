@@ -27,7 +27,7 @@ public class LottoService {
 
     public int[] cal(LottoDTO lottoDTO, ManualDTO manualDTO, HttpServletRequest request, SessionUser user) {
         LocalDate dayday = LocalDate.now();
-        long num = Math.round(dayday.getYear() * dayday.lengthOfMonth() * dayday.getDayOfYear() + lottoDTO.getLuckyNum() * lottoDTO.getDay() * lottoDTO.getMonth() * Math.pow(lottoDTO.getYear(), 2) * 1.618);
+        long num = Math.round(dayday.getYear() * dayday.lengthOfMonth() * dayday.getDayOfYear() * lottoDTO.getLuckyNum() * lottoDTO.getDay() * lottoDTO.getMonth() * Math.pow(lottoDTO.getYear(), 2) * 1.618);
         int[] auto = getLotto(num);
         int[] lotto = manualDTO.getall();
         for (int i = 0; i < 6; i++) {
